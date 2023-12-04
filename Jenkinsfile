@@ -34,7 +34,7 @@ pipeline {
 
         stage("Verify") {
             steps {
-                sh "mvn verify pmd:pmd"
+                sh "mvn -B verify pmd:pmd"
             }
         }
 
@@ -52,7 +52,7 @@ pipeline {
                 branch "main"
             }
             steps {
-                sh "mvn install -Dskip.push=false -Dtag=DIT-${BUILD_NUMBER}"
+                sh "mvn install -B -Dskip.push=false -Dtag=DIT-${BUILD_NUMBER}"
             }
         }
     }
