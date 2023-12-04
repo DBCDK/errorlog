@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="3.0"
+             xmlns="https://jakarta.ee/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd">
+    <persistence-unit name="errorlogPU" transaction-type="JTA">
+        <jta-data-source>jdbc/errorlog</jta-data-source>
+        <class>dk.dbc.monitoring.errorlog.model.ErrorLogEntityContextConverter</class>
+        <class>dk.dbc.monitoring.errorlog.model.ErrorLogEntity</class>
+        <properties>
+            <property name="jakarta.persistence.schema-generation.database.action" value="none"/>
+        </properties>
+    </persistence-unit>
+    <persistence-unit name="errorlogIT" transaction-type="RESOURCE_LOCAL">
+        <class>dk.dbc.monitoring.errorlog.model.ErrorLogEntityContextConverter</class>
+        <class>dk.dbc.monitoring.errorlog.model.ErrorLogEntity</class>
+        <properties>
+            <property name="jakarta.persistence.schema-generation.database.action" value="none"/>
+            <property name="eclipselink.logging.logger" value="org.eclipse.persistence.logging.DefaultSessionLog"/>
+            <property name="eclipselink.logging.level" value="FINE"/>
+        </properties>
+    </persistence-unit>
+</persistence>
