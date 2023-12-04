@@ -40,8 +40,10 @@ pipeline {
 
         stage("Publish PMD Results") {
             steps {
-                def pmd = scanForIssues tool: [$class: 'Pmd']
-                publishIssues issues: [pmd], unstableTotalAll: 1
+                script {
+                    def pmd = scanForIssues tool: [$class: 'Pmd']
+                    publishIssues issues: [pmd], unstableTotalAll: 1
+                }
             }
         }
 
