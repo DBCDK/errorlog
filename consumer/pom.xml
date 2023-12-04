@@ -33,9 +33,7 @@
         <dependency>
             <groupId>fish.payara.cloud.connectors.kafka</groupId>
             <artifactId>kafka-rar</artifactId>
-            <version>1.0.0</version>
             <type>rar</type>
-            <scope>runtime</scope>
         </dependency>
         <dependency>
             <groupId>dk.dbc</groupId>
