@@ -49,9 +49,7 @@ pipeline {
 
         stage("Docker build") {
             when {
-                when {
-                    branch "main"
-                }
+                branch "main"
             }
             steps {
                 sh "mvn install -Dskip.push=false -Dtag=DIT-${BUILD_NUMBER}"
