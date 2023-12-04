@@ -1,8 +1,3 @@
-/*
- * Copyright Dansk Bibliotekscenter a/s. Licensed under GPLv3
- * See license text in LICENSE.txt
- */
-
 package dk.dbc.monitoring.errorlog;
 
 import dk.dbc.monitoring.errorlog.model.LogEvent;
@@ -26,8 +21,8 @@ public final class ErrorCause {
     }
 
     private static String extractCauseFromStacktrace(String stacktrace) {
-        try (final Scanner scanner = new Scanner(stacktrace)) {
-            final String firstLine = scanner.nextLine();
+        try (Scanner scanner = new Scanner(stacktrace)) {
+            String firstLine = scanner.nextLine();
             String line = firstLine;
             String cause = null;
             while (scanner.hasNextLine()) {

@@ -15,6 +15,7 @@ public class ErrorLogSummary {
     private int grouping_namespace;
     private int grouping_app;
     private int grouping_cause;
+    @SuppressWarnings("unused")
     private Kind kind;
 
     public ErrorLogSummary() {}

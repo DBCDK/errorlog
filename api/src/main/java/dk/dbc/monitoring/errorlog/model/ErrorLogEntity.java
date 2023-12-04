@@ -39,7 +39,7 @@ import java.util.Objects;
                 name = ErrorLogEntity.QUERY_GET_SUMMARY,
                 classes = {
                         @ConstructorResult(
-                                targetClass = dk.dbc.monitoring.errorlog.model.ErrorLogSummary.class,
+                                targetClass = ErrorLogSummary.class,
                                 columns = {
                                         @ColumnResult(name = "namespace", type = String.class),
                                         @ColumnResult(name = "app", type = String.class),

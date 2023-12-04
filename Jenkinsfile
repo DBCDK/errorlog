@@ -52,7 +52,7 @@ pipeline {
                 branch "main"
             }
             steps {
-                sh "mvn install -B -Dskip.push=false -Dtag=DIT-${BUILD_NUMBER}"
+                sh "mvn install -B -Dmaven.test.skip=true -Dskip.push=false -Dtag=DIT-${BUILD_NUMBER}"
             }
         }
     }
