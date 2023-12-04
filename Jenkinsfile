@@ -40,10 +40,8 @@ pipeline {
 
         stage("Publish PMD Results") {
             steps {
-                step([$class          : 'hudson.plugins.pmd.PmdPublisher',
-                      pattern         : '**/target/pmd.xml',
-                      unstableTotalAll: "0",
-                      failedTotalAll  : "0"])
+                def pmd = scanForIssues tool: [$class: 'Pmd']
+                publishIssues issues: [pmd], unstableTotalAll: 1
             }
         }
 
