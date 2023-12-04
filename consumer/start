@@ -1,0 +1,24 @@
+./stop || true
+./build docker || exit 1
+
+echo "### Starting errorlog-consumer docker ###"
+
+errorlog_consumer_port=${ERRORLOG_CONSUMER_PORT:-8080}
+docker run --rm --name errorlog-consumer -d -e JAVA_MAX_HEAP_SIZE=2G -e ERRORLOG_DB=${ERRORLOG_DB} -e KAFKA_HOSTS=${KAFKA_HOSTS} -e KAFKA_TOPICS=${KAFKA_TOPICS} -e KAFKA_GROUP_ID=${KAFKA_GROUP_ID:-$USER} -e KAFKA_CLIENT_ID=${KAFKA_CLIENT_ID:-$USER} -e NUM_WORKERS=${NUM_WORKERS:-360} -p ${errorlog_consumer_port}:8080 errorlog-consumer
+
+attempts=0
+max_attempts=60
+until $(curl --output /dev/null --silent --head --fail http://localhost:${errorlog_consumer_port}/status); do
+    if [ ${attempts} -eq ${max_attempts} ]; then
+        break
+    fi
+
+    printf '.'
+    attempts=$(($attempts+1))
+    sleep 0.5
+done
+
+echo ""
+echo "### Status for errorlog-consumer service ###"
+curl -vs http://localhost:${errorlog_consumer_port}/status
+echo ""

@@ -1,0 +1,3 @@
+echo "### Stopping errorlog-consumer docker ###"
+
+docker stop errorlog-consumer || exit 1
